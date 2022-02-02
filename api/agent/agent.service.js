@@ -65,7 +65,7 @@ module.exports = {
     //method to get Agent by email
     getAgentsByEmail: (email, callBack) => {
       pool.query(
-          `select AgentId,email,password from agents where email=?`,
+          `select * from agents where email=?`,
           [email],
           (err,results,fields) => {
               if (err) {

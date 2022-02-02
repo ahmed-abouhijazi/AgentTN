@@ -72,6 +72,8 @@ module.exports = {
                 Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
               ),
               httplOnly: true,
+              SameSite: 'Lax',
+	          secure:false,
             };
           return res
           .cookie('jwt', token, cookieOptions)
