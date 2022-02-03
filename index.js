@@ -3,6 +3,7 @@ const AgentRouter = require('./api/agent/agent.router');
 var cookieSession = require("cookie-session");
 const cors = require("cors");
 const cookieParser = require('cookie-parser');
+const eurekaHelper = require('./eureka-helper');
 
 
 
@@ -37,8 +38,10 @@ app.use((req,res,next)=>{
 app.use(cors({credentials: true,origin: ["*"],}));
 app.use('/api/agents',AgentRouter);
 
+let port = process.env.PORT || 4000;
 
+app.listen(port,()=>{
+    console.log(`Listening on ${port}`);
+});
 
-app.listen(4000,()=>{
-    console.log('Listening on 4000');
-})
+//eurekaHelper.registerWithEureka('AGENT-SERVICE', 4000);

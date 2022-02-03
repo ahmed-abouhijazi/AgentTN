@@ -4,12 +4,22 @@ module.exports = {
     //method to create new Agent
     create: (data,callBack)=> {
         pool.query(
-            `insert into agents(email,password)
-                        values(?,?)`,
+            `insert into agents(email,password,company,firstName,lastName,address,city,country, about,postal,solde)
+             values(?,?,?,?,?,?,?,?,?,?,?)`,
 
             [
                 data.email,
                 data.password,
+                data.company,
+                data.firstName,
+                data.lastName,
+                data.address,
+                data.city,
+                data.country, 
+                data.about,
+                data.postal,
+                data.solde
+
             ],
             (error , results,fields)=>{
                 if(error){
@@ -19,27 +29,10 @@ module.exports = {
             }
         );
     },
-    createU: (data)=> {
-        pool.query(
-            `insert into agents(email,password)
-                        values(?,?)`,
-
-            [
-                data.email,
-                data.password,
-            ],
-            (error , results,fields)=>{
-                if(error){
-                   return console.log(error);
-                }
-                return console.log(null,results);
-            }
-        );
-    },
     //Method to get all agents
     getAgents: callBack => {
         pool.query(
-            `select AgentId,email,password from agents`,
+            `select * from agents`,
             [],
             (err,results,fields) => {
                 if (err) {
@@ -52,7 +45,7 @@ module.exports = {
     //method to get Agent by id
     getAgentsById: (id, callBack) => {
         pool.query(
-            `select AgentId,email from agents where AgentId=?`,
+            `select * from agents where AgentId=?`,
             [id],
             (err,results,fields) => {
                 if (err) {
@@ -76,14 +69,15 @@ module.exports = {
       )
   },
     //update Agent
-    updateAgent: (data,callBack)=> {
+    updateAgentSolde: (data,callBack)=> {
         pool.query(
-            `update agents set email=?,password=? where AgentId=?`,
+            `update agents set solde=? where AgentId=?`,
 
             [
-                data.email,
-                data.password,
-                data.AgentId
+                //update solde
+                data.solde,
+                data.AgentId,
+
             ],
             (error , results,fields)=>{
                 if(error){

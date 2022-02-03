@@ -1,7 +1,7 @@
 const {create,
     getAgents,
     getAgentsById,
-    updateAgent,
+    updateAgentSolde,
     deletAgent,
     getAgentsByEmail} = require("./agent.service");
 const bcrypt = require('bcryptjs');
@@ -130,7 +130,7 @@ module.exports = {
     //controller update Agents
     updateAgent:(req,res)=>{
         const body = req.body;
-        updateAgent(body,(err,results)=>{
+        updateAgentSolde(body,(err,results)=>{
             if(err){
                 console.log(err);
                 return;
