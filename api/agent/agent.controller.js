@@ -27,7 +27,7 @@ module.exports = {
             })
         });
     },
-    getAgentsById:(req,res)=>{
+    GetAgentsById:(req,res)=>{
         const id = req.params.id;
         getAgentsById(id,(err,results)=>{
             if(err){
@@ -41,8 +41,17 @@ module.exports = {
                 });
             }
             return res.json({
-                success:1,
-                data:results
+                email:results.email,
+                password:results.password,
+                company:results.company,
+                firstName:results.firstName,
+                lastName:results.lastName,
+                address:results.address,
+                city:results.city,
+                country :results.country, 
+                about:results.about,
+                postal:results.postal,
+                solde:results.solde,
             });
         });
     },

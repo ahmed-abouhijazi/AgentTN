@@ -29,6 +29,7 @@ module.exports = {
             }
         );
     },
+
     //Method to get all agents
     getAgents: callBack => {
         pool.query(
@@ -45,7 +46,7 @@ module.exports = {
     //method to get Agent by id
     getAgentsById: (id, callBack) => {
         pool.query(
-            `select * from agents where AgentId=?`,
+            `select * from agents where agentId=?`,
             [id],
             (err,results,fields) => {
                 if (err) {
@@ -71,12 +72,12 @@ module.exports = {
     //update Agent
     updateAgentSolde: (data,callBack)=> {
         pool.query(
-            `update agents set solde=? where AgentId=?`,
+            `update agents set solde=? where agentId=?`,
 
             [
                 //update solde
                 data.solde,
-                data.AgentId,
+                data.agentId,
 
             ],
             (error , results,fields)=>{
@@ -90,10 +91,10 @@ module.exports = {
     //delete Agent
     deletAgent: (data,callBack)=> {
         pool.query(
-            `delete from agents where AgentId = ?`,
+            `delete from agents where agentId = ?`,
 
             [
-                data.AgentId
+                data.agentId
             ],
             (error , results,fields)=>{
                 if(error){
